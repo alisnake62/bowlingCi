@@ -7,7 +7,7 @@ class TestEasyMethods(unittest.TestCase):
     # testtest
     # testtest111
     # testtest
-    # test
+    # testtest
     
     def test_easy(self):
         # Arrange
