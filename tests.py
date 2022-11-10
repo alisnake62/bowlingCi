@@ -8,7 +8,9 @@ class TestEasyMethods(unittest.TestCase):
     # testtest111
     # testtest
     # testtest
-    #test
+    # test
+
+    #dernier modif
     
     def test_easy(self):
         # Arrange
