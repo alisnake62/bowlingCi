@@ -8,10 +8,10 @@ class TestEasyMethods(unittest.TestCase):
         # Arrange
 
         # Action
-        easyTest = easy()
+        testEasy = easy()
 
         # Assert
-        self.assertEqual(easyTest, 1)
+        self.assertEqual(testEasy, 1)
 
 if __name__ == '__main__':
     unittest.main()
