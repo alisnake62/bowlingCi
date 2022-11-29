@@ -4,7 +4,7 @@ from bowlingCi import easy
 
 class TestEasyMethods(unittest.TestCase):
 
-    # test1
+    # test2
 
     #dernier modif
     
