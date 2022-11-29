@@ -15,7 +15,7 @@ class TestEasyMethods(unittest.TestCase):
         testEasy = easy()
 
         # Assert
-        self.assertEqual(testEasy, 1)
+        self.assertEqual(testEasy, 2)
 
 if __name__ == '__main__':
     unittest.main()
