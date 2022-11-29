@@ -5,6 +5,7 @@ from bowlingCi import easy
 class TestEasyMethods(unittest.TestCase):
 
     # test2
+    # test3
 
     #dernier modif
     
@@ -15,7 +16,7 @@ class TestEasyMethods(unittest.TestCase):
         testEasy = easy()
 
         # Assert
-        self.assertEqual(testEasy, 2)
+        self.assertEqual(testEasy, 1)
 
 if __name__ == '__main__':
     unittest.main()
