@@ -12,6 +12,7 @@ class TestEasyMethods(unittest.TestCase):
     # test2
     # test3
     # test3
+    # test3
 
     #dernier modif
     
