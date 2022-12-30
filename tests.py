@@ -1,24 +1,21 @@
 import unittest
 
-from bowlingCi import easy
+from bowlingCi import Partie
 
-class TestEasyMethods(unittest.TestCase):
+class TestLancer(unittest.TestCase):
 
-    # test2
-    # test3
-    # test4
-    # test5
-
-    #dernier modif
-    
-    def test_easy(self):
+    def test_lancer_random(self):
         # Arrange
+        partie = Partie()
 
         # Action
-        testEasy = easy()
+        partie.lancer()
+        score = partie.getScore()
 
         # Assert
-        self.assertEqual(testEasy, 2)
+        self.assertGreater(score, 0)
+        self.assertLessEqual(score, 10)
+
 
 if __name__ == '__main__':
     unittest.main()
