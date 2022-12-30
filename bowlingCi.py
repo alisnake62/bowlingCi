@@ -13,6 +13,9 @@ class Frame:
             nombreDeQuille = random.randint(0, 10)
         self._lancers.append(nombreDeQuille)
 
+    def estUnStrike(self) -> bool:
+        return self._lancers == [10]
+
 class Partie:
 
     _frames:List[Frame]
@@ -28,6 +31,8 @@ class Partie:
     def getScore(self) -> int:
         score = 0
         for frame in self._frames:
+            if frame.estUnStrike():
+                continue
             for lancer in frame._lancers:
                 score += lancer
         return score

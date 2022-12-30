@@ -50,5 +50,16 @@ class TestLancer(unittest.TestCase):
         # Assert
         self.assertEqual(score, 0)
 
+    def test_lancer_strike(self):
+        # Arrange
+        partie = Partie()
+
+        # Action
+        partie.lancer(nombreDeQuille=10)
+        score = partie.getScore()
+
+        # Assert
+        self.assertEqual(score, 0)
+
 if __name__ == '__main__':
     unittest.main()
