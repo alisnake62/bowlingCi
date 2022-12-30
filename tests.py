@@ -4,16 +4,7 @@ from bowlingCi import easy
 
 class TestEasyMethods(unittest.TestCase):
 
-    # testtest
-    # testtest111
-    # testtest
-    # testtest
-    # testtest
     # test2
-    # test3
-    # test3
-    # test3
-    # test3
     # test3
     # test4
 
