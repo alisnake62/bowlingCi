@@ -1,7 +1,7 @@
 from typing import List
 import random
 
-class Frame:
+class Carreau:
 
     _lancers:List[int]
 
@@ -16,23 +16,46 @@ class Frame:
     def estUnStrike(self) -> bool:
         return self._lancers == [10]
 
+    def estUnSpare(self) -> bool:
+        if len(self._lancers) == 2 and sum(self._lancers) == 10:
+            return True
+        return False
+
+    def estTermine(self) -> bool:
+        if self.estUnStrike():
+            return True
+        if len(self._lancers) == 2:
+            return True
+        return False
+
 class Partie:
 
-    _frames:List[Frame]
+    _carreaux:List[Carreau]
 
     def __init__(self) -> None:
-        self._frames = []
+        self._carreaux              = []
+
+    def _carreauxActuel(self) -> Carreau:
+        if len(self._carreaux) == 0:
+            return None
+        return self._carreaux[-1]
 
     def lancer(self, nombreDeQuille:int=None) -> None:
-        frame = Frame()
-        frame.lancer(nombreDeQuille=nombreDeQuille)
-        self._frames.append(frame)
+        carreauActuel = self._carreauxActuel()
+        if carreauActuel is None or carreauActuel.estTermine():
+            carreau = Carreau()
+            carreau.lancer(nombreDeQuille=nombreDeQuille)
+            self._carreaux.append(carreau)
+        else:
+            carreauActuel.lancer(nombreDeQuille=nombreDeQuille)
 
     def getScore(self) -> int:
         score = 0
-        for frame in self._frames:
-            if frame.estUnStrike():
+        for carreau in self._carreaux:
+            if carreau.estUnStrike():
                 continue
-            for lancer in frame._lancers:
+            if carreau.estUnSpare():
+                continue
+            for lancer in carreau._lancers:
                 score += lancer
         return score
