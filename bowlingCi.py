@@ -33,7 +33,7 @@ class Partie:
     _carreaux:List[Carreau]
 
     def __init__(self) -> None:
-        self._carreaux              = []
+        self._carreaux = []
 
     def _carreauxActuel(self) -> Carreau:
         if len(self._carreaux) == 0:
@@ -49,13 +49,22 @@ class Partie:
         else:
             carreauActuel.lancer(nombreDeQuille=nombreDeQuille)
 
+    def dansleScopeDUnSpare(self, indexCarreau) -> bool:
+        if indexCarreau < 1:
+            return False
+        if self._carreaux[indexCarreau - 1].estUnSpare():
+            return True
+        return False
+
     def getScore(self) -> int:
         score = 0
-        for carreau in self._carreaux:
+        for index, carreau in enumerate(self._carreaux):
             if carreau.estUnStrike():
                 continue
             if carreau.estUnSpare():
                 continue
             for lancer in carreau._lancers:
+                if self.dansleScopeDUnSpare(indexCarreau=index):
+                    score += 10 + lancer  # bonus spare
                 score += lancer
         return score
