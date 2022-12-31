@@ -104,13 +104,26 @@ class TestLancer(unittest.TestCase):
         # Etant donnée une partie
         partie = Partie()
 
-        # On fait tomber 2 quilles 1 lancer après un stike
+        # On fait tomber 2 quilles en 1 lancer après un stike
         partie.lancer(nombreDeQuille=10) # strike
         partie.lancer(nombreDeQuille=2) 
         score = partie.getScore()
 
-        # Alors le score est de 2
+        # Alors le score est de 0
         self.assertEqual(score, 0)
+
+    def test_2_lancer_apres_un_strike(self):
+        # Etant donnée une partie
+        partie = Partie()
+
+        # On fait tomber 4 quilles en 2 lancer après un stike
+        partie.lancer(nombreDeQuille=10) # strike
+        partie.lancer(nombreDeQuille=3)
+        partie.lancer(nombreDeQuille=2)
+        score = partie.getScore()
+
+        # Alors le score est de 18
+        self.assertEqual(score, 20)
 
 if __name__ == '__main__':
     unittest.main()
