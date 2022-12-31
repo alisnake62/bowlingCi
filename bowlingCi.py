@@ -58,16 +58,19 @@ class Partie:
                 nombreDeLancer += len(self._carreaux[index])
         return nombreDeLancer
 
-        # for index, carreau in enumerate(self._carreaux[indexCarreauDepart + 1:indexCarreau + 1]):
-        #     if index == indexCarreau:
-        #         nombreDeLancer += indexLancer + 1
-        #     else:
-        #         nombreDeLancer += len(carreau)
-
-    def dansleScopeDUnSpare(self, indexCarreau:int, indexLancer:int) -> bool:
+    def _estLeBonusDUnSpare(self, indexCarreau:int, indexLancer:int) -> bool:
         if indexCarreau < 1:
             return False
         if self._carreaux[indexCarreau - 1].estUnSpare():
+            nombreDeLancerApresCarreau = self._nombreDeLancerApresCarreau(indexCarreauDepart=indexCarreau-1, indexCarreau=indexCarreau, indexLancer=indexLancer)
+            if nombreDeLancerApresCarreau == 1:
+                return True
+        return False
+
+    def _estDansLeScopeDUnStrike(self, indexCarreau:int, indexLancer:int) -> bool:
+        if indexCarreau < 1:
+            return False
+        if self._carreaux[indexCarreau - 1].estUnStrike():
             nombreDeLancerApresCarreau = self._nombreDeLancerApresCarreau(indexCarreauDepart=indexCarreau-1, indexCarreau=indexCarreau, indexLancer=indexLancer)
             if nombreDeLancerApresCarreau == 1:
                 return True
@@ -81,7 +84,9 @@ class Partie:
             if carreau.estUnSpare():
                 continue
             for indexLancer, lancer in enumerate(carreau._lancers):
-                if self.dansleScopeDUnSpare(indexCarreau=indexCarreau, indexLancer=indexLancer):
+                if self._estDansLeScopeDUnStrike(indexCarreau=indexCarreau, indexLancer=indexLancer):
+                    continue
+                if self._estLeBonusDUnSpare(indexCarreau=indexCarreau, indexLancer=indexLancer):
                     score += 10 + lancer  # bonus spare
                 score += lancer
         return score
