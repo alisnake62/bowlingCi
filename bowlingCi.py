@@ -49,22 +49,39 @@ class Partie:
         else:
             carreauActuel.lancer(nombreDeQuille=nombreDeQuille)
 
-    def dansleScopeDUnSpare(self, indexCarreau) -> bool:
+    def _nombreDeLancerApresCarreau(self, indexCarreauDepart:int, indexCarreau:int, indexLancer:int) -> int:
+        nombreDeLancer = 0
+        for index in range(indexCarreauDepart + 1, indexCarreau + 1):
+            if index == indexCarreau:
+                nombreDeLancer += indexLancer + 1
+            else:
+                nombreDeLancer += len(self._carreaux[index])
+        return nombreDeLancer
+
+        # for index, carreau in enumerate(self._carreaux[indexCarreauDepart + 1:indexCarreau + 1]):
+        #     if index == indexCarreau:
+        #         nombreDeLancer += indexLancer + 1
+        #     else:
+        #         nombreDeLancer += len(carreau)
+
+    def dansleScopeDUnSpare(self, indexCarreau:int, indexLancer:int) -> bool:
         if indexCarreau < 1:
             return False
         if self._carreaux[indexCarreau - 1].estUnSpare():
-            return True
+            nombreDeLancerApresCarreau = self._nombreDeLancerApresCarreau(indexCarreauDepart=indexCarreau-1, indexCarreau=indexCarreau, indexLancer=indexLancer)
+            if nombreDeLancerApresCarreau == 1:
+                return True
         return False
 
     def getScore(self) -> int:
         score = 0
-        for index, carreau in enumerate(self._carreaux):
+        for indexCarreau, carreau in enumerate(self._carreaux):
             if carreau.estUnStrike():
                 continue
             if carreau.estUnSpare():
                 continue
-            for lancer in carreau._lancers:
-                if self.dansleScopeDUnSpare(indexCarreau=index):
+            for indexLancer, lancer in enumerate(carreau._lancers):
+                if self.dansleScopeDUnSpare(indexCarreau=indexCarreau, indexLancer=indexLancer):
                     score += 10 + lancer  # bonus spare
                 score += lancer
         return score
