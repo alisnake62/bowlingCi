@@ -137,5 +137,18 @@ class TestLancer(unittest.TestCase):
         # Alors le score est de 0
         self.assertEqual(score, 0)
 
+    def test_1_spare_apres_un_strike(self):
+        # Etant donnée une partie
+        partie = Partie()
+
+        # On fait 1 spare après un stike
+        partie.lancer(nombreDeQuille=10) # strike
+        partie.lancer(nombreDeQuille=6)
+        partie.lancer(nombreDeQuille=4)
+        score = partie.getScore()
+
+        # Alors le score est de 20
+        self.assertEqual(score, 20)
+
 if __name__ == '__main__':
     unittest.main()

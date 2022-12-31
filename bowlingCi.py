@@ -91,6 +91,8 @@ class Partie:
             if carreau.estUnStrike():
                 continue
             if carreau.estUnSpare():
+                if self._estLeBonusDUnStrike(indexCarreau=indexCarreau, indexLancer=1):
+                    score += 10 + 10
                 continue
             bonusStrike = 0
             for indexLancer, lancer in enumerate(carreau._lancers):
