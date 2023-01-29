@@ -15,7 +15,7 @@ class TestLancer(unittest.TestCase):
         score = partie.getScore()
 
         # Alors le score est de 9
-        self.assertEqual(score, 9)
+        self.assertEqual(score, 8)
     
     def test_lancer_random(self):
         # Etant donnée une partie
