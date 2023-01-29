@@ -4,6 +4,19 @@ from bowlingCi import Partie
 
 class TestLancer(unittest.TestCase):
 
+    # # Demo Video
+    # def test_lancer_2_7(self):
+    #     # Etant donnée une partie
+    #     partie = Partie()
+
+    #     # On fait tomber 2 puis 7 quilles
+    #     partie.lancer(nombreDeQuille=2)
+    #     partie.lancer(nombreDeQuille=7)
+    #     score = partie.getScore()
+
+    #     # Alors le score est de 9
+    #     self.assertEqual(score, 9)
+    
     def test_lancer_random(self):
         # Etant donnée une partie
         partie = Partie()
