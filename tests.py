@@ -164,5 +164,55 @@ class TestLancer(unittest.TestCase):
         # Alors le score est de 38
         self.assertEqual(score, 38)
 
+    def test_partie_complete_de_Strike(self):
+        partie = Partie()
+
+        # On fait 12 lancer de strike
+        partie.lancer(nombreDeQuille=10)  # strike
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        partie.lancer(nombreDeQuille=10)
+        score = partie.getScore()
+
+        # Alors le score est de 0
+        self.assertEqual(score, 0)
+
+    def test_partie_complete(self):
+        partie = Partie()
+
+        # On fait 20 lancers
+        partie.lancer(nombreDeQuille=7)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=2)
+        partie.lancer(nombreDeQuille=4)
+        partie.lancer(nombreDeQuille=6)
+        partie.lancer(nombreDeQuille=3)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=5)
+        partie.lancer(nombreDeQuille=0)
+        partie.lancer(nombreDeQuille=5)
+        partie.lancer(nombreDeQuille=7)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=8)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=3)
+        partie.lancer(nombreDeQuille=1)
+        partie.lancer(nombreDeQuille=8)
+        partie.lancer(nombreDeQuille=0)
+        partie.lancer(nombreDeQuille=5)
+        score = partie.getScore()
+
+        # Alors le score est de 69
+        self.assertEqual(score, 69)
+
 if __name__ == '__main__':
     unittest.main()
